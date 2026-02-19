@@ -27,3 +27,22 @@ To manage storage efficiently, the `VAGRANT_HOME` variable should be set to poin
 ```powershell
 [System.Environment]::SetEnvironmentVariable("VAGRANT_HOME", "D:\Programs\Vagrant\home", "User")
 ```
+
+## Usage
+
+Navigate to the desired project directory:
+`cd projects/CyberRange`
+
+Initialize and provision the environment:
+`vagrant up`
+
+Access a specific node via SSH:
+`vagrant ssh <machine_name>`
+
+## Maintenance
+
+Update Boxes: `vagrant box update`
+
+Resource Cleanup: `vagrant destroy` (Deletes instances while keeping the project configuration intact).
+
+Prune Metadata: `vagrant global-status --prune`
