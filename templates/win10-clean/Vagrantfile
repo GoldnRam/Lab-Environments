@@ -1,0 +1,22 @@
+Vagrant.configure("2") do |config|
+  # Using the most stable public Win10 box
+  config.vm.box = "gusztavvargadr/windows-10-21h2-enterprise"
+
+  config.vm.provider "vmware_desktop" do |v|
+    v.gui = true
+    v.cpus = 2
+    v.memory = 4096
+    v.linked_clone = true
+  end
+
+  config.vm.network "private_network", type: "dhcp"
+
+  # Basic Windows "Quality of Life" settings
+  config.vm.provision "shell", inline: <<-PS1
+    # Set execution policy to unrestricted for future scripts
+    Set-ExecutionPolicy Unrestricted -Force
+    # Disable Windows sleep/hibernation for lab stability
+    powercfg /x -hibernate-timeout-ac 0
+    powercfg /x -standby-timeout-ac 0
+  PS1
+end

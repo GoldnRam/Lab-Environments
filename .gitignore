@@ -1,0 +1,15 @@
+# Vagrant metadata
+.vagrant/
+
+# VMware logs and lock files
+*.log
+*.lck
+*.vmem
+*.vmsn
+
+# Box files 
+*.box
+
+# OS generated files
+.DS_Store
+Thumbs.db

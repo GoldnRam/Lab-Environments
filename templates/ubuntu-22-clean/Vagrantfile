@@ -1,0 +1,20 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "bento/ubuntu-22.04"
+
+  config.vm.provider "vmware_desktop" do |v|
+    v.gui = false
+    v.cpus = 2
+    v.memory = 2048
+    v.linked_clone = true # Essential for disk speed and space
+  end
+
+  # Default to a DHCP private network to avoid IP collisions 
+  # when you first copy the template
+  config.vm.network "private_network", type: "dhcp"
+
+  # Minimal baseline provisioner
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get update && apt-get upgrade -y
+    echo "Clean Ubuntu Template Ready."
+  SHELL
+end
